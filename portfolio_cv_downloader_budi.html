@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budi - Portfolio & CV</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Gaya Khusus Cetak (A4 PDF) */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-cv-area, #printable-cv-area * {
+                visibility: visible;
+            }
+            #printable-cv-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                color: black !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-teal-500 selection:text-white">
+
+    <!-- HEADER & NAVIGASI -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-950/80 border-b border-slate-900 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <div class="flex items-center gap-2">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-teal-500 to-blue-600 flex items-center justify-center font-bold text-lg shadow-lg shadow-teal-500/20">
+                    B
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">BUDI</span>
+                    <span class="text-xs block text-teal-400 font-mono tracking-wider">PORTFOLIO</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-teal-400 transition-colors">Tentang Saya</a>
+                <a href="#growth" class="hover:text-teal-400 transition-colors">Pencapaian</a>
+                <a href="#portfolio" class="hover:text-teal-400 transition-colors">Portofolio</a>
+                <a href="#skills" class="hover:text-teal-400 transition-colors">Keahlian & Tools</a>
+                <a href="#contact" class="hover:text-teal-400 transition-colors">Hubungi</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button 
+                    onclick="openCvModal()" 
+                    class="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-white shadow-lg shadow-teal-500/25 hover:shadow-teal-400/35 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                >
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <span>Unduh CV (PDF)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden pt-12 pb-24 md:py-32">
+        <!-- Dekorasi Latar Belakang -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-teal-400">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-400"></i>
+                    <span>Tersedia untuk Pekerjaan Kontrak / Full-time</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                    Halo, Saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Budi</span>
+                    <span class="block mt-2 text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-300 min-h-[48px]">
+                        Spesialis <span id="typewriter-text" class="border-r-2 border-teal-400 pr-1 text-teal-400"></span>
+                    </span>
+                </h1>
+
+                <p class="max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg text-slate-400 leading-relaxed">
+                    Lulusan SMKN 1 Ciomas jurusan Rekayasa Perangkat Lunak dengan pengalaman lebih dari 3 tahun di bidang 
+                    <strong> Digital Marketing, WordPress Development, dan Social Media Management</strong>. Berfokus pada pertumbuhan bisnis, peningkatan konversi iklan, dan pembuatan sistem website yang elegan.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a 
+                        href="#portfolio" 
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                        <span>Lihat Hasil Kerja</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
+                    </a>
+
+                    <button 
+                        onclick="openCvModal()"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-white shadow-lg shadow-teal-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                    >
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>Buka CV Saya</span>
+                    </button>
+                </div>
+
+                <!-- Quick Metrics -->
+                <div class="grid grid-cols-3 gap-4 pt-8 max-w-md mx-auto lg:mx-0 border-t border-slate-900">
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-white">3+</p>
+                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Tahun Kerja</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-teal-400">Rp 839M+</p>
+                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Omset Teratas (2025)</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-blue-500">10+</p>
+                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Website Sukses</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Avatar Box -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative group w-64 h-64 sm:w-80 sm:h-80">
+                    
+                    <!-- Outer Glow Effect -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-teal-500 to-blue-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                    
+                    <!-- Main Avatar Container -->
+                    <div class="relative w-full h-full rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden flex flex-col justify-between p-6">
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono text-teal-400">STATUS: AKTIF</span>
+                            <div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        </div>
+
+                        <!-- Profile Picture Mockup with User Details -->
+                        <div class="my-auto flex flex-col items-center text-center">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-teal-500/50 p-1 mb-4 overflow-hidden bg-slate-800 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-slate-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Budi</h3>
+                            <p class="text-xs text-slate-400 font-mono mt-1">Dramaga, Bogor, Jawa Barat</p>
+                            
+                            <div class="flex gap-2 mt-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-teal-400 border border-slate-700">Digital Marketing</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-blue-400 border border-slate-700">Web Dev</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                            <span>SMKN 1 Ciomas</span>
+                            <span>RPL Lulusan</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEKSI TENTANG SAYA -->
+    <section id="about" class="py-20 bg-slate-900/40 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-4">
+                    <p class="text-xs font-bold text-teal-400 uppercase tracking-widest font-mono">PROFIL DETAIL</p>
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Mengapa Memilih Saya?</h2>
+                    <div class="h-1 w-20 bg-teal-500 rounded"></div>
+                    
+                    <p class="text-slate-400 text-sm leading-relaxed pt-2">
+                        Saya memiliki keunikan berupa perpaduan dua keahlian teknis tingkat tinggi: <strong>Kemampuan Pemrograman (Software Engineering)</strong> dan <strong>Strategi Pemasaran Digital (Growth Marketing)</strong>. 
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Ini memungkinkan saya tidak hanya merancang dan membangun website fungsional yang bebas bug, tetapi juga mengoptimalkannya dari sudut pandang SEO, performa iklan Meta, integrasi marketplace, hingga melacak conversion rate-nya secara akurat.
+                    </p>
+
+                    <div class="pt-4 space-y-2">
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <i data-lucide="check-circle2" class="w-5 h-5 text-teal-400 flex-shrink-0"></i>
+                            <span>Kombinasi Rekayasa Perangkat Lunak & Pemasaran</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <i data-lucide="check-circle2" class="w-5 h-5 text-teal-400 flex-shrink-0"></i>
+                            <span>Pernah Mengembangkan Website Universitas & Rumah Sakit</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-300">
+                            <i data-lucide="check-circle2" class="w-5 h-5 text-teal-400 flex-shrink-0"></i>
+                            <span>Terbukti Memacu Omset E-Commerce Hingga Rp 839 Juta (2025)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-teal-400"></i>
+                        <span>Pengalaman Kerja Utama</span>
+                    </h3>
+
+                    <div class="space-y-6">
+                        
+                        <!-- Job 1 -->
+                        <div class="relative pl-6 border-l-2 border-slate-800 hover:border-teal-500/80 transition-colors py-1">
+                          <div class="absolute w-3 h-3 bg-teal-400 rounded-full -left-[7px] top-[10px] ring-4 ring-slate-950"></div>
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                            <h4 class="font-bold text-white text-base">Sosial Media & Admin</h4>
+                            <span class="text-xs font-mono text-teal-400 px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/20 w-fit">September 2022 - Sekarang</span>
+                          </div>
+                          <p class="text-sm font-semibold text-slate-300 mb-2">PT Dexatama Niaga Labtekindo</p>
+                          <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                            <li>Mengelola 3 akun Instagram perusahaan utama guna mendongkrak tingkat interaksi (engagement).</li>
+                            <li>Merancang & membangun website company profile eksklusif menggunakan WordPress.</li>
+                            <li>Mengoptimalisasi struktur SEO untuk mendongkrak lalu lintas pengunjung organik di Google.</li>
+                            <li>Bertanggung jawab atas administrasi penjualan (pembuatan Invoice, Kwitansi, Surat Jalan & Penawaran Harga).</li>
+                            <li>Pemeliharaan intensif operasional toko di e-commerce Tokopedia & Shopee.</li>
+                          </ul>
+                        </div>
+
+                        <!-- Job 2 -->
+                        <div class="relative pl-6 border-l-2 border-slate-800 hover:border-teal-500/80 transition-colors py-1">
+                          <div class="absolute w-3 h-3 bg-slate-700 rounded-full -left-[7px] top-[10px] ring-4 ring-slate-950"></div>
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                            <h4 class="font-bold text-white text-base">Web Developer</h4>
+                            <span class="text-xs font-mono text-slate-400 px-2 py-0.5 rounded bg-slate-800 border border-slate-700 w-fit">Mei 2021 - Juni 2022</span>
+                          </div>
+                          <p class="text-sm font-semibold text-slate-300 mb-2">PT Inovasi Niti Digital</p>
+                          <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                            <li>Mengembangkan website akademik untuk Kampus Matana University.</li>
+                            <li>Membangun dan merancang aneka website profil perusahaan klien.</li>
+                            <li>Memelihara performa server & database website popscitech.com.</li>
+                            <li>Mengatur struktur meta data website guna keperluan optimasi mesin pencari (SEO).</li>
+                          </ul>
+                        </div>
+
+                        <!-- Job 3 -->
+                        <div class="relative pl-6 border-l-2 border-slate-800 hover:border-teal-500/80 transition-colors py-1">
+                          <div class="absolute w-3 h-3 bg-slate-700 rounded-full -left-[7px] top-[10px] ring-4 ring-slate-950"></div>
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                            <h4 class="font-bold text-white text-base">Web Developer</h4>
+                            <span class="text-xs font-mono text-slate-400 px-2 py-0.5 rounded bg-slate-800 border border-slate-700 w-fit">Mei 2021 - Juni 2022</span>
+                          </div>
+                          <p class="text-sm font-semibold text-slate-300 mb-2">GIKA INDONESIA</p>
+                          <ul class="text-xs text-slate-400 space-y-1.5 list-disc list-inside">
+                            <li>Melanjutkan pengembangan sistem aplikasi internal Rumah Sakit SIMRS Cendana.</li>
+                            <li>Menulis baris kode terstruktur menggunakan PHP/JavaScript sesuai pembagian modul aplikasi.</li>
+                          </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKSI STATISTIK REVENUE INTERAKTIF -->
+    <section id="growth" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <p class="text-xs font-bold text-teal-400 uppercase tracking-widest font-mono">METRIK PERFORMA</p>
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Pertumbuhan Penjualan E-Commerce</h2>
+                <div class="h-1 w-20 bg-teal-500 rounded mx-auto"></div>
+                <p class="text-slate-400 text-sm">
+                    Grafik interaktif pencapaian omset penjualan online yang berhasil saya kelola di PT Dexatama Niaga Labtekindo. Klik bar untuk detail tahunan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Visualisasi Grafik Interaktif -->
+                <div class="lg:col-span-7 bg-slate-900/60 border border-slate-800 p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i>
+                            <span class="font-bold text-sm text-white">Grafik Penjualan Online Tahunan</span>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono">Mata Uang: IDR (Rupiah)</span>
+                    </div>
+
+                    <!-- Batang Grafik -->
+                    <div class="h-64 flex items-end justify-between gap-4 pt-12 border-b border-slate-800 pb-1 px-4 relative">
+                        
+                        <!-- Horizontal Guide Lines -->
+                        <div class="absolute left-0 right-0 top-1/4 border-t border-slate-800/40 text-[10px] text-slate-500 pt-1 pointer-events-none">Rp 600M+</div>
+                        <div class="absolute left-0 right-0 top-2/4 border-t border-slate-800/40 text-[10px] text-slate-500 pt-1 pointer-events-none">Rp 400M+</div>
+                        <div class="absolute left-0 right-0 top-3/4 border-t border-slate-800/40 text-[10px] text-slate-500 pt-1 pointer-events-none">Rp 200M+</div>
+
+                        <!-- 2022 Bar -->
+                        <div onclick="selectRevenueYear('2022')" class="revenue-bar-wrapper flex-1 flex flex-col items-center group cursor-pointer z-10" data-year="2022">
+                            <div class="revenue-tooltip mb-2 px-2 py-1 rounded text-[11px] font-bold font-mono transition-all duration-200 opacity-0 group-hover:opacity-100 bg-slate-800 text-slate-300">Rp 48.5M</div>
+                            <div class="w-full max-w-[50px] rounded-t-lg transition-all duration-500 relative bg-gradient-to-t from-slate-800 to-slate-700 group-hover:from-slate-700 group-hover:to-teal-500/60" style="height: 8%"></div>
+                            <span class="mt-3 text-xs font-bold font-mono text-slate-400 group-hover:text-white">2022</span>
+                        </div>
+
+                        <!-- 2023 Bar -->
+                        <div onclick="selectRevenueYear('2023')" class="revenue-bar-wrapper flex-1 flex flex-col items-center group cursor-pointer z-10" data-year="2023">
+                            <div class="revenue-tooltip mb-2 px-2 py-1 rounded text-[11px] font-bold font-mono transition-all duration-200 opacity-0 group-hover:opacity-100 bg-slate-800 text-slate-300">Rp 586.7M</div>
+                            <div class="w-full max-w-[50px] rounded-t-lg transition-all duration-500 relative bg-gradient-to-t from-slate-800 to-slate-700 group-hover:from-slate-700 group-hover:to-teal-500/60" style="height: 69%"></div>
+                            <span class="mt-3 text-xs font-bold font-mono text-slate-400 group-hover:text-white">2023</span>
+                        </div>
+
+                        <!-- 2024 Bar -->
+                        <div onclick="selectRevenueYear('2024')" class="revenue-bar-wrapper flex-1 flex flex-col items-center group cursor-pointer z-10" data-year="2024">
+                            <div class="revenue-tooltip mb-2 px-2 py-1 rounded text-[11px] font-bold font-mono transition-all duration-200 opacity-0 group-hover:opacity-100 bg-slate-800 text-slate-300">Rp 241.5M</div>
+                            <div class="w-full max-w-[50px] rounded-t-lg transition-all duration-500 relative bg-gradient-to-t from-slate-800 to-slate-700 group-hover:from-slate-700 group-hover:to-teal-500/60" style="height: 28%"></div>
+                            <span class="mt-3 text-xs font-bold font-mono text-slate-400 group-hover:text-white">2024</span>
+                        </div>
+
+                        <!-- 2025 Bar (Active by Default) -->
+                        <div onclick="selectRevenueYear('2025')" class="revenue-bar-wrapper flex-1 flex flex-col items-center group cursor-pointer z-10" data-year="2025">
+                            <div class="revenue-tooltip mb-2 px-2 py-1 rounded text-[11px] font-bold font-mono transition-all duration-200 bg-teal-400 text-slate-950 scale-110 -translate-y-1">Rp 839.2M</div>
+                            <div class="w-full max-w-[50px] rounded-t-lg transition-all duration-500 relative bg-gradient-to-t from-teal-600 to-teal-400 shadow-lg shadow-teal-500/20" style="height: 100%"><div class="absolute inset-0 bg-white/10 rounded-t-lg"></div></div>
+                            <span class="mt-3 text-xs font-bold font-mono text-teal-400">2025</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Panel Detail Statistik Samping -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <span class="text-xs text-teal-400 font-mono uppercase tracking-wider font-bold">DETAIL PENJUALAN</span>
+                        
+                        <div id="revenue-detail-container" class="mt-4 space-y-4">
+                            <!-- Dynamic Content Inserted by JavaScript -->
+                            <div>
+                                <span class="text-xs text-slate-500 block">Tahun Operasional</span>
+                                <h3 class="text-3xl font-extrabold text-white font-mono">2025</h3>
+                            </div>
+
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                                <span class="text-xs text-slate-500 block">Total Omset Penjualan (E-Commerce)</span>
+                                <p class="text-2xl font-bold text-teal-400 font-mono mt-1">Rp 839.271.678</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-850">
+                                    <span class="text-[10px] text-slate-500 block">Laju Pertumbuhan</span>
+                                    <span class="text-xs font-bold text-white block mt-0.5">+247%</span>
+                                </div>
+                                <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-850">
+                                    <span class="text-[10px] text-slate-500 block">Pengelola Toko</span>
+                                    <span class="text-xs font-bold text-white block mt-0.5">Budi (Admin)</span>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-400 leading-relaxed pt-2">
+                                Pencapaian fantastis senilai Rp 839 Juta+ diraih berkat pemeliharaan konten SEO harian, analisis pasar tren terkini, optimasi keyword pencarian e-commerce, dan penawaran instan yang cepat kepada calon pembeli.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gradient-to-r from-teal-500/10 to-blue-600/10 rounded-xl border border-teal-500/20 text-xs text-slate-300">
+                        <span class="font-bold text-white block mb-1">💡 Catatan Keahlian:</span>
+                        Melalui pengelolaan penuh siklus transaksi dari administrasi penawaran harga, pembuatan invoice, penerbitan surat jalan, hingga optimalisasi pasca penjualan, saya memahami seluruh siklus rantai pasok pemasaran digital.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALERI PORTOFOLIO INTERAKTIF -->
+    <section id="portfolio" class="py-20 bg-slate-900/40 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <p class="text-xs font-bold text-teal-400 uppercase tracking-widest font-mono">HASIL KARYA</p>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Showcase Projek Terpilih</h2>
+                    <div class="h-1 w-20 bg-teal-500 rounded mt-3"></div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <button onclick="filterPortfolio('all')" id="btn-filter-all" class="portfolio-filter-btn px-4 py-2 rounded-full border transition-all cursor-pointer bg-teal-500 text-white border-teal-500 shadow-md shadow-teal-500/15">
+                        Semua Projek
+                    </button>
+                    <button onclick="filterPortfolio('web')" id="btn-filter-web" class="portfolio-filter-btn px-4 py-2 rounded-full border transition-all cursor-pointer bg-slate-900 text-slate-400 border-slate-800 hover:text-white">
+                        Web Dev
+                    </button>
+                    <button onclick="filterPortfolio('marketing')" id="btn-filter-marketing" class="portfolio-filter-btn px-4 py-2 rounded-full border transition-all cursor-pointer bg-slate-900 text-slate-400 border-slate-800 hover:text-white">
+                        Marketing / SEO
+                    </button>
+                    <button onclick="filterPortfolio('design')" id="btn-filter-design" class="portfolio-filter-btn px-4 py-2 rounded-full border transition-all cursor-pointer bg-slate-900 text-slate-400 border-slate-800 hover:text-white">
+                        Grafis & Desain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid Portofolio -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Project 1 -->
+                <div class="portfolio-card bg-slate-900 border border-slate-850 rounded-2xl overflow-hidden group hover:border-slate-700 transition-all duration-300 flex flex-col justify-between" data-category="web">
+                    <div class="h-48 overflow-hidden relative bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&auto=format&fit=crop&q=60" alt="Website Kampus Matana University" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 backdrop-blur-md text-teal-400 border border-slate-800">
+                            Web Development
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono text-slate-500">Matana University</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-teal-400 transition-colors leading-snug">Website Kampus Matana University</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Mengembangkan portal akademik kampus resmi dengan desain responsif, optimasi performa tinggi, dan struktur navigasi modern.</p>
+                        </div>
+                        <div class="pt-2">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">WordPress</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Elementor</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">PHP</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">SEO Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-card bg-slate-900 border border-slate-850 rounded-2xl overflow-hidden group hover:border-slate-700 transition-all duration-300 flex flex-col justify-between" data-category="web">
+                    <div class="h-48 overflow-hidden relative bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&auto=format&fit=crop&q=60" alt="SIMRS Cendana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 backdrop-blur-md text-teal-400 border border-slate-800">
+                            Web Development
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono text-slate-500">GIKA INDONESIA</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-teal-400 transition-colors leading-snug">Sistem Informasi Manajemen Rumah Sakit (SIMRS) Cendana</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Melanjutkan pembuatan dan pengembangan modul khusus untuk integrasi rekam medis dan sistem administrasi kasir rumah sakit.</p>
+                        </div>
+                        <div class="pt-2">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">HTML/CSS</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">JavaScript</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">PHP</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Database Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-card bg-slate-900 border border-slate-850 rounded-2xl overflow-hidden group hover:border-slate-700 transition-all duration-300 flex flex-col justify-between" data-category="marketing">
+                    <div class="h-48 overflow-hidden relative bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Optimasi E-commerce PT Dexatama" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 backdrop-blur-md text-teal-400 border border-slate-800">
+                            Marketing
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono text-slate-500">PT Dexatama Niaga Labtekindo</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-teal-400 transition-colors leading-snug">Optimasi E-commerce (PT Dexatama)</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Mengelola toko online resmi di Tokopedia & Shopee, meluncurkan iklan strategis berbiaya efisien, serta meningkatkan penjualan drastis.</p>
+                        </div>
+                        <div class="pt-2">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Tokopedia Ads</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Shopee Ads</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Meta Suite</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Google Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-card bg-slate-900 border border-slate-850 rounded-2xl overflow-hidden group hover:border-slate-700 transition-all duration-300 flex flex-col justify-between" data-category="web">
+                    <div class="h-48 overflow-hidden relative bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=60" alt="Website Portal Jurnal Popscitech" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 backdrop-blur-md text-teal-400 border border-slate-800">
+                            Web Development
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono text-slate-500">PT Inovasi Niti Digital</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-teal-400 transition-colors leading-snug">Website Portal Jurnal Popscitech</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Pemeliharaan teknis, integrasi modul jurnal sains, dan peningkatan visibilitas pencarian Google melalui SEO On-Page tingkat lanjut.</p>
+                        </div>
+                        <div class="pt-2">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">WordPress</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Custom CSS</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">On-Page SEO</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Security Audit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-card bg-slate-900 border border-slate-850 rounded-2xl overflow-hidden group hover:border-slate-700 transition-all duration-300 flex flex-col justify-between" data-category="design">
+                    <div class="h-48 overflow-hidden relative bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=60" alt="Katalog & Desain Identitas Produk Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 backdrop-blur-md text-teal-400 border border-slate-800">
+                            Design / Catalog
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono text-slate-500">PT Dexatama Niaga Labtekindo</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-teal-400 transition-colors leading-snug">Katalog & Desain Identitas Produk Lab</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Pembuatan brosur cetak berkualitas tinggi, banner digital untuk media sosial, serta kalender perusahaan eksklusif tahunan.</p>
+                        </div>
+                        <div class="pt-2">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Photoshop</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Canva</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Desain Cetak</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">Creative Dir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-card bg-slate-900 border border-slate-850 rounded-2xl overflow-hidden group hover:border-slate-700 transition-all duration-300 flex flex-col justify-between" data-category="web">
+                    <div class="h-48 overflow-hidden relative bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&auto=format&fit=crop&q=60" alt="Aplikasi Website Kasir Makanan Mandiri" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 backdrop-blur-md text-teal-400 border border-slate-800">
+                            Web Development
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono text-slate-500">SMKN 1 Ciomas</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-teal-400 transition-colors leading-snug">Aplikasi Website Kasir Makanan Mandiri</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Mendesain dan memprogram aplikasi point of sales kasir terintegrasi database lokal untuk efisiensi transaksi restoran sekolah.</p>
+                        </div>
+                        <div class="pt-2">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">HTML</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">CSS</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">PHP</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-850">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEKSI KEMAMPUAN & TOOLS -->
+    <section id="skills" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-4 space-y-4">
+                    <p class="text-xs font-bold text-teal-400 uppercase tracking-widest font-mono">ALAT & KEAHLIAN</p>
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Teknologi yang Dikuasai</h2>
+                    <div class="h-1 w-20 bg-teal-500 rounded"></div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Kombinasi perangkat lunak kreatif, platform periklanan, optimasi SEO, dan bahasa pemrograman yang digunakan untuk menumbuhkan bisnis secara efisien.
+                    </p>
+                </div>
+
+                <!-- Grid List Kemampuan -->
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  
+                  <!-- Box 1 -->
+                  <div class="bg-slate-900 border border-slate-850 p-5 rounded-2xl space-y-4">
+                    <div class="h-10 w-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center">
+                      <i data-lucide="bar-chart-3" class="w-5 h-5 text-teal-400"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-white text-sm">Digital Marketing</h3>
+                      <p class="text-[11px] text-slate-500 mt-0.5">Strategi konversi & iklan</p>
+                    </div>
+                    <ul class="text-xs text-slate-400 space-y-2 font-mono">
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-teal-400"></div>
+                        <span>Meta Ads</span>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-teal-400"></div>
+                        <span>Marketplace Ads</span>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-teal-400"></div>
+                        <span>Content Strategy</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Box 2 -->
+                  <div class="bg-slate-900 border border-slate-850 p-5 rounded-2xl space-y-4">
+                    <div class="h-10 w-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                      <i data-lucide="monitor" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-white text-sm">Web Development</h3>
+                      <p class="text-[11px] text-slate-500 mt-0.5">Pemrograman & CMS</p>
+                    </div>
+                    <ul class="text-xs text-slate-400 space-y-2 font-mono">
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-blue-400"></div>
+                        <span>WordPress / Elementor</span>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-blue-400"></div>
+                        <span>HTML / CSS / PHP</span>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-blue-400"></div>
+                        <span>Basic SEO</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Box 3 -->
+                  <div class="bg-slate-900 border border-slate-850 p-5 rounded-2xl space-y-4">
+                    <div class="h-10 w-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                      <i data-lucide="palette" class="w-5 h-5 text-purple-400"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-white text-sm">Alat Pendukung</h3>
+                      <p class="text-[11px] text-slate-500 mt-0.5">Analisis & Grafis</p>
+                    </div>
+                    <ul class="text-xs text-slate-400 space-y-2 font-mono">
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-purple-400"></div>
+                        <span>Google Analytics / GSC</span>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-purple-400"></div>
+                        <span>Canva & Photoshop</span>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <div class="h-1.5 w-1.5 rounded-full bg-purple-400"></div>
+                        <span>Meta Business Suite</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HUBUNGI SAYA -->
+    <section id="contact" class="py-20 bg-slate-900/40 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Info Kontak -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <p class="text-xs font-bold text-teal-400 uppercase tracking-widest font-mono">HUBUNGI SAYA</p>
+                        <h2 class="text-3xl font-extrabold text-white mt-1">Mari Mulai Kolaborasi!</h2>
+                        <div class="h-1 w-20 bg-teal-500 rounded mt-3"></div>
+                    </div>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Silakan hubungi saya untuk konsultasi pembuatan website company profile, pengelolaan pemasaran e-commerce, strategi konten sosial media, atau perekrutan kerja.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-teal-400">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 block">WhatsApp / No HP</span>
+                                <a href="https://wa.me/6288289643466" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-white hover:text-teal-400 transition-colors">
+                                    0882-8964-3466
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-teal-400">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1">
+                                <span class="text-xs text-slate-500 block">Email Resmi</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-semibold text-white">budaybudi84@gmail.com</span>
+                                    <button 
+                                        onclick="copyEmailAddress()"
+                                        id="btn-copy-email"
+                                        class="text-[10px] font-mono text-teal-400 bg-teal-500/10 border border-teal-500/20 px-1.5 py-0.5 rounded cursor-pointer transition-all hover:bg-teal-500/20"
+                                    >
+                                        Salin
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-teal-400">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 block">Alamat Tinggal</span>
+                                <span class="text-sm font-semibold text-slate-300">Dramaga, Kab. Bogor, Jawa Barat</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-teal-400">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 block">LinkedIn Resmi</span>
+                                <a href="https://www.linkedin.com/in/budi-buday-8a940a185" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-white hover:text-teal-400 transition-colors inline-flex items-center gap-1">
+                                    <span>Budi Buday</span>
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Simulasi -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 relative">
+                        <span class="text-xs text-teal-400 font-mono uppercase tracking-wider font-bold">KIRIM PESAN SEKARANG</span>
+                        
+                        <!-- Success message box -->
+                        <div id="contact-success-state" class="hidden my-8 text-center space-y-3 py-6">
+                            <div class="h-12 w-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto text-emerald-400">
+                                <i data-lucide="check" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-lg">Pesan Berhasil Dikirim!</h4>
+                            <p class="text-xs text-slate-400 max-w-sm mx-auto">
+                                Terima kasih sudah menghubungi. Simulasi pesan telah tersimpan ke dalam memori aplikasi ini. Saya akan membalas secepat mungkin melalui email Anda.
+                            </p>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="portfolio-contact-form" onsubmit="handleContactSubmit(event)" class="mt-4 space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-xs text-slate-400 font-semibold">Nama Anda</label>
+                                    <input 
+                                        type="text" 
+                                        id="form-name"
+                                        required
+                                        placeholder="Masukkan nama..."
+                                        class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-500/80 transition-colors"
+                                    />
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs text-slate-400 font-semibold">Email Anda</label>
+                                    <input 
+                                        type="email" 
+                                        id="form-email"
+                                        required
+                                        placeholder="contoh@email.com"
+                                        class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-500/80 transition-colors"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-400 font-semibold">Isi Pesan / Penawaran</label>
+                                <textarea 
+                                    rows="4"
+                                    id="form-message"
+                                    required
+                                    placeholder="Tulis detail kebutuhan projek Anda di sini..."
+                                    class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-500/80 transition-colors"
+                                ></textarea>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                                <button 
+                                    type="submit"
+                                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-white shadow-lg shadow-teal-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                                >
+                                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                                    <span>Kirim via Email Web</span>
+                                </button>
+
+                                <a 
+                                    href="https://wa.me/6288289643466?text=Halo%20Budi,%20saya%20tertarik%20dengan%20portofolio%20Anda%20dan%20ingin%20bekerjasama."
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                                >
+                                    <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                                    <span>Kirim Pesan langsung ke WhatsApp</span>
+                                </a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+            <div>
+                <p class="font-semibold text-slate-400">© 2026 BUDI. All Rights Reserved.</p>
+                <p class="mt-1 font-mono">Dibuat menggunakan HTML, JS, & Tailwind CSS.</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button 
+                    onclick="openCvModal()" 
+                    class="text-teal-400 hover:underline cursor-pointer bg-transparent border-none p-0"
+                >
+                    Kembali Ke Atas & Unduh CV
+                </button>
+                <span>•</span>
+                <a href="https://www.linkedin.com/in/budi-buday-8a940a185" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CV GENERATOR & VIEWER MODAL (A4 READY) -->
+    <div id="cv-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm flex justify-center overflow-y-auto py-8 px-4 no-print hidden">
+          
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl p-6 relative h-fit space-y-6 my-auto">
+          
+            <!-- Header Modal Kontrol -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                <div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-5 h-5 text-teal-400"></i>
+                        <span>Interactive CV Viewer (A4 Ready)</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">
+                        CV ini siap dicetak langsung atau disimpan sebagai file PDF berkualitas tinggi.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button 
+                        onclick="window.print()"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-400 hover:to-blue-500 text-white shadow-lg cursor-pointer"
+                    >
+                        <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                        <span>Cetak / Simpan PDF</span>
+                    </button>
+                    <button 
+                        onclick="closeCvModal()"
+                        class="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 cursor-pointer"
+                    >
+                        Tutup Viewer
+                    </button>
+                </div>
+            </div>
+
+            <!-- AREA DOKUMEN CV EKSEKUTIF -->
+            <div id="printable-cv-area" class="bg-white text-slate-900 p-8 sm:p-12 rounded-xl shadow-2xl max-w-3xl mx-auto border border-slate-200 transition-colors duration-300">
+                
+                <!-- Header CV Utama -->
+                <div class="border-b-4 border-teal-600 pb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div>
+                            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900">BUDI</h1>
+                            <p class="text-sm font-bold text-teal-700 uppercase tracking-wider mt-1">Digital Marketing Specialist & WordPress Developer</p>
+                        </div>
+
+                        <!-- Info Kontak Cepat -->
+                        <div class="text-xs text-slate-600 space-y-1 font-sans">
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-3 h-3 text-teal-600"></i>
+                                <span>Dramaga, Kab. Bogor, Jawa Barat</span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="phone" class="w-3 h-3 text-teal-600"></i>
+                                <span>0882-8964-3466</span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="mail" class="w-3 h-3 text-teal-600"></i>
+                                <span>budaybudi84@gmail.com</span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="linkedin" class="w-3 h-3 text-teal-600"></i>
+                                <span>linkedin.com/in/budi-buday-8a940a185</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Isi CV -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-6">
+                    
+                    <!-- Kolom Kiri -->
+                    <div class="md:col-span-4 space-y-6">
+                        
+                        <!-- Tentang Saya -->
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider border-b-2 border-slate-200 pb-1">TENTANG SAYA</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
+                                Lulusan SMKN 1 Ciomas jurusan Rekayasa Perangkat Lunak dengan pengalaman lebih dari 3 tahun di bidang Digital Marketing, WordPress Development, dan Social Media Management. Terbiasa mengelola strategi pemasaran digital, optimasi website SEO, serta berhasil meningkatkan revenue bisnis hingga Rp 839 Juta pada tahun 2025.
+                            </p>
+                        </div>
+
+                        <!-- Kemampuan Utama -->
+                        <div class="space-y-3">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider border-b-2 border-slate-200 pb-1">KEMAMPUAN</h3>
+                            <div class="space-y-2 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-800">Digital Marketing:</span>
+                                    <p class="text-slate-600">Meta Ads, Marketplace Ads, Content Strategy.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-800">Web Development:</span>
+                                    <p class="text-slate-600">WordPress, Elementor, Basic SEO, HTML, CSS, PHP.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-800">Desain & Alat:</span>
+                                    <p class="text-slate-600">Canva, Photoshop, Microsoft Office.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tools Marketing -->
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider border-b-2 border-slate-200 pb-1">TOOLS MARKETING</h3>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="text-[10px] bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium border border-slate-200">Google Analytics</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium border border-slate-200">Google Search Console</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium border border-slate-200">Meta Business Suite</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium border border-slate-200">Tokopedia TopAds</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium border border-slate-200">Shopee Ads</span>
+                            </div>
+                        </div>
+
+                        <!-- Pendidikan -->
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider border-b-2 border-slate-200 pb-1">PENDIDIKAN</h3>
+                            <div class="text-xs">
+                                <p class="font-bold text-slate-850">SMKN 1 CIOMAS</p>
+                                <p class="text-slate-500 font-mono">2016 - 2019</p>
+                                <p class="text-slate-600 font-semibold mt-0.5">Rekayasa Perangkat Lunak</p>
+                                <ul class="list-disc list-inside text-[11px] text-slate-500 mt-1 space-y-0.5">
+                                    <li>Membuat Website Kasir Makanan</li>
+                                    <li>Membuat Website Profile Sekolah</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Kolom Kanan -->
+                    <div class="md:col-span-8 space-y-6">
+                        <div class="space-y-4">
+                            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider border-b-2 border-slate-200 pb-1">PENGALAMAN PEKERJAAN</h3>
+                            
+                            <!-- Job 1 -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-bold text-slate-950 text-sm">Sosial Media & Admin</h4>
+                                        <p class="text-xs font-semibold text-teal-700">PT Dexatama Niaga Labtekindo</p>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">September 2022 - Sekarang</span>
+                                </div>
+                                <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside text-justify">
+                                    <li>Mengelola 3 akun Instagram perusahaan untuk meningkatkan engagement.</li>
+                                    <li>Mengembangkan website company profile berbasis WordPress.</li>
+                                    <li>Mengoptimalkan SEO untuk meningkatkan traffic organik di Google.</li>
+                                    <li>Menangani administrasi penjualan (invoice, kwitansi, surat jalan, penawaran harga).</li>
+                                    <li>Maintenance Penjualan Online di E-commerce Tokopedia dan Shopee.</li>
+                                    <li>Membuat Desain Company Profile, Desain Katalog Product, Desain Banner, Desain Kalender.</li>
+                                </ul>
+
+                                <!-- Revenue Table inside CV -->
+                                <div class="mt-2 p-2.5 bg-teal-50 border border-teal-100 rounded-lg">
+                                    <span class="text-[10px] font-bold text-teal-800 uppercase block tracking-wider mb-1">Pencapaian Omset Penjualan E-commerce:</span>
+                                    <div class="grid grid-cols-4 gap-2 text-center text-[10px] font-mono">
+                                        <div>
+                                            <span class="text-slate-500 block">2022</span>
+                                            <span class="font-bold text-slate-800">Rp 48,5 Jt</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-slate-500 block">2023</span>
+                                            <span class="font-bold text-slate-800">Rp 586,7 Jt</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-slate-500 block">2024</span>
+                                            <span class="font-bold text-slate-800">Rp 241,5 Jt</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-slate-500 block">2025</span>
+                                            <span class="font-bold text-teal-700">Rp 839,2 Jt</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Job 2 -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-bold text-slate-950 text-sm">Web Developer</h4>
+                                        <p class="text-xs font-semibold text-slate-700">PT Inovasi Niti Digital</p>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Mei 2021 - Juni 2022</span>
+                                </div>
+                                <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+                                    <li>Membangun & mendesain website Kampus resmi Matana University.</li>
+                                    <li>Membangun aneka website profil perusahaan klien.</li>
+                                    <li>Maintenance & peningkatan performa server popscitech.com.</li>
+                                    <li>Mengatur arsitektur SEO on-page website.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Job 3 -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-bold text-slate-950 text-sm">Web Developer</h4>
+                                        <p class="text-xs font-semibold text-slate-700">GIKA INDONESIA</p>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Mei 2021 - Juni 2022</span>
+                                </div>
+                                <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+                                    <li>Melanjutkan Pembuatan Aplikasi Rumah Sakit SIMRS Cendana.</li>
+                                    <li>Membuat modul-modul program sesuai target sistem rumah sakit.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CV Sign Block -->
+                <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-[10px] text-slate-500 font-mono">
+                    <span>Dihasilkan secara instan dari Portfolio Budi</span>
+                    <span>Bogor, Jawa Barat, Indonesia</span>
+                </div>
+
+            </div>
+
+            <!-- Tombol Aksi Bawah -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Tekan tombol Cetak di atas untuk mengekspor sebagai PDF resmi.</span>
+                </span>
+                <button 
+                    onclick="closeCvModal()"
+                    class="text-teal-400 hover:underline font-semibold cursor-pointer bg-transparent border-none p-0"
+                >
+                    Kembali ke Portofolio
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT UTAMA WEBSITE (INTERAKTIF) -->
+    <script>
+        // Data Omset Penjualan Online PT Dexatama
+        const revenueData = {
+            '2022': {
+                year: '2022',
+                amount: 'Rp 48.516.150',
+                growth: 'Mulai Terbuka',
+                desc: 'Peletakan batu pertama sistem penjualan digital PT Dexatama, membangun fondasi awal e-commerce yang tadinya nihil.'
+            },
+            '2023': {
+                year: '2023',
+                amount: 'Rp 586.771.607',
+                growth: '+1,110%',
+                desc: 'Lonjakan eksponensial di tahun kedua pengelolaan berkat integrasi penuh Shopee & Tokopedia dengan dukungan promosi ads serta manajemen katalog produk yang mendalam.'
+            },
+            '2024': {
+                year: '2024',
+                amount: 'Rp 241.560.614',
+                growth: 'Penyesuaian Pasar',
+                desc: 'Periode transisi dan adaptasi strategi baru setelah terjadi pergeseran regulasi e-commerce utama. Berhasil mempertahankan kestabilan transaksi.'
+            },
+            '2025': {
+                year: '2025',
+                amount: 'Rp 839.271.678',
+                growth: '+247%',
+                desc: 'Pencapaian fantastis senilai Rp 839 Juta+ diraih berkat pemeliharaan konten SEO harian, analisis pasar tren terkini, optimasi keyword pencarian e-commerce, dan penawaran instan yang cepat kepada calon pembeli.'
+            }
+        };
+
+        // Judul Headline Peran (Typewriter Effect)
+        const roles = [
+            "Digital Marketing Specialist",
+            "WordPress & Web Developer",
+            "Social Media Manager",
+            "E-commerce Growth Hacker"
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let currentText = '';
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const typewriterElement = document.getElementById('typewriter-text');
+            if (!typewriterElement) return;
+
+            const fullText = roles[roleIndex];
+            
+            if (isDeleting) {
+                currentText = fullText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                currentText = fullText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            typewriterElement.innerHTML = currentText;
+            
+            let typeSpeed = isDeleting ? 40 : 80;
+            
+            if (!isDeleting && currentText === fullText) {
+                typeSpeed = 1500; // Jeda saat kalimat lengkap diketik
+                isDeleting = true;
+            } else if (isDeleting && currentText === '') {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500; // Jeda sebelum mengetik kata baru
+            }
+            
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Fungsi Interaksi Grafik Penjualan
+        function selectRevenueYear(year) {
+            const data = revenueData[year];
+            if (!data) return;
+
+            // Perbarui UI Panel Detail
+            const container = document.getElementById('revenue-detail-container');
+            container.innerHTML = `
+                <div>
+                    <span class="text-xs text-slate-500 block">Tahun Operasional</span>
+                    <h3 class="text-3xl font-extrabold text-white font-mono">${data.year}</h3>
+                </div>
+
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                    <span class="text-xs text-slate-500 block">Total Omset Penjualan (E-Commerce)</span>
+                    <p class="text-2xl font-bold text-teal-400 font-mono mt-1">${data.amount}</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-850">
+                        <span class="text-[10px] text-slate-500 block">Laju Pertumbuhan</span>
+                        <span class="text-xs font-bold text-white block mt-0.5">${data.growth}</span>
+                    </div>
+                    <div class="p-3 bg-slate-950/60 rounded-xl border border-slate-850">
+                        <span class="text-[10px] text-slate-500 block">Pengelola Toko</span>
+                        <span class="text-xs font-bold text-white block mt-0.5">Budi (Admin)</span>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-400 leading-relaxed pt-2">
+                    ${data.desc}
+                </p>
+            `;
+
+            // Atur ulang kelas aktif pada visual bar grafik
+            const wrappers = document.querySelectorAll('.revenue-bar-wrapper');
+            wrappers.forEach(wrap => {
+                const barYear = wrap.getAttribute('data-year');
+                const barElement = wrap.querySelector('div:nth-child(2)');
+                const textElement = wrap.querySelector('span');
+                const tooltip = wrap.querySelector('.revenue-tooltip');
+
+                if (barYear === year) {
+                    // Berikan style aktif
+                    barElement.className = "w-full max-w-[50px] rounded-t-lg transition-all duration-500 relative bg-gradient-to-t from-teal-600 to-teal-400 shadow-lg shadow-teal-500/20";
+                    barElement.innerHTML = '<div class="absolute inset-0 bg-white/10 rounded-t-lg"></div>';
+                    textElement.className = "mt-3 text-xs font-bold font-mono text-teal-400";
+                    tooltip.className = "revenue-tooltip mb-2 px-2 py-1 rounded text-[11px] font-bold font-mono transition-all duration-200 bg-teal-400 text-slate-950 scale-110 -translate-y-1";
+                } else {
+                    // Gaya tidak aktif
+                    barElement.className = "w-full max-w-[50px] rounded-t-lg transition-all duration-500 relative bg-gradient-to-t from-slate-800 to-slate-700 group-hover:from-slate-700 group-hover:to-teal-500/60";
+                    barElement.innerHTML = '';
+                    textElement.className = "mt-3 text-xs font-bold font-mono text-slate-400 group-hover:text-white";
+                    tooltip.className = "revenue-tooltip mb-2 px-2 py-1 rounded text-[11px] font-bold font-mono transition-all duration-200 opacity-0 group-hover:opacity-100 bg-slate-800 text-slate-300";
+                }
+            });
+        }
+
+        // Fungsi Filter Portofolio
+        function filterPortfolio(category) {
+            const cards = document.querySelectorAll('.portfolio-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.classList.remove('hidden');
+                    // Tambahkan efek transisi halus
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transition = 'opacity 300ms ease-in-out';
+                    }, 50);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Perbarui tombol filter aktif
+            const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.className = "portfolio-filter-btn px-4 py-2 rounded-full border transition-all cursor-pointer bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
+            });
+
+            const activeBtn = document.getElementById(`btn-filter-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "portfolio-filter-btn px-4 py-2 rounded-full border transition-all cursor-pointer bg-teal-500 text-white border-teal-500 shadow-md shadow-teal-500/15";
+            }
+        }
+
+        // Fungsi Salin Alamat Email
+        function copyEmailAddress() {
+            const btn = document.getElementById('btn-copy-email');
+            
+            // Clipboard fallback sesuai manual
+            const el = document.createElement('textarea');
+            el.value = 'budaybudi84@gmail.com';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            btn.textContent = 'Tersalin!';
+            btn.className = "text-[10px] font-mono text-white bg-emerald-500 border border-emerald-400 px-1.5 py-0.5 rounded cursor-pointer transition-all";
+            
+            setTimeout(() => {
+                btn.textContent = 'Salin';
+                btn.className = "text-[10px] font-mono text-teal-400 bg-teal-500/10 border border-teal-500/20 px-1.5 py-0.5 rounded cursor-pointer transition-all hover:bg-teal-500/20";
+            }, 2000);
+        }
+
+        // Pengiriman Formulir Simulasi
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const message = document.getElementById('form-message').value;
+
+            if (!name || !email || !message) return;
+
+            // Tampilkan UI pesan sukses
+            document.getElementById('portfolio-contact-form').classList.add('hidden');
+            document.getElementById('contact-success-state').classList.remove('hidden');
+
+            // Kembalikan form ke keadaan awal setelah beberapa detik
+            setTimeout(() => {
+                document.getElementById('portfolio-contact-form').reset();
+                document.getElementById('portfolio-contact-form').classList.remove('hidden');
+                document.getElementById('contact-success-state').classList.add('hidden');
+            }, 5000);
+        }
+
+        // Kontrol Tampilan Modal CV
+        function openCvModal() {
+            document.getElementById('cv-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama
+        }
+
+        function closeCvModal() {
+            document.getElementById('cv-modal').classList.add('hidden');
+            document.body.style.overflow = ''; // Aktifkan kembali scroll
+        }
+
+        // Jalankan saat DOM Selesai Dimuat
+        window.onload = function() {
+            // Memulai pengetikan dinamis headline
+            typeWriter();
+            
+            // Inisialisasi ikon Lucide
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
